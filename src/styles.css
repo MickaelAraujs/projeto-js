@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap');
+
 body {
-    background: #1A2026;
+    background: #FFF;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.imgCard {
+    width: 250px;
+}
+
+.card {
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.cardTitle {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.alert {
+    margin-top: 30px;
 }
