@@ -5,6 +5,9 @@ class Main {
 		this.elementsPrototype();
 		this.loadElements();
 
+		this.comedyMoviesChart();
+		this.actionMoviesChart();
+
 	}
 
 	elementsPrototype(){
@@ -68,7 +71,7 @@ class Main {
 		this.el = {};
 		document.querySelectorAll("[id]").forEach(el=>{
 
-			this.el[Utils.getCamelCase(el.id)] = el;
+			this.el[Main.getCamelCase(el.id)] = el;
 
 		});
 
@@ -82,4 +85,84 @@ class Main {
 
 	}
 
+	comedyMoviesChart(){
+
+		let context = this.el.comedyCanvas.getContext('2d');
+
+		let chart = new Chart(context, {
+	    type: 'bar',
+		    data: {
+		        labels: ['As Branquelas', 'Inatividade Paranormal', 'Todo mundo em pânico'],
+		        datasets: [{
+		            label: 'Os melhores filmes de comédia',
+		            data: [12, 19, 10],
+		            backgroundColor: [
+		                'rgba(255, 99, 132, 0.2)',
+		                'rgba(54, 162, 235, 0.2)',
+		                'rgba(255, 206, 86, 0.2)'
+		            ],
+		            borderColor: [
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)'
+		            ],
+		            borderWidth: 0.5
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero: true
+		                }
+		            }]
+		        },
+		        maintainAspectRatio: false,
+		        responsive: false
+		    }
+		});
+
+	}
+
+	actionMoviesChart(){
+
+		let context = this.el.actionCanvas.getContext('2d');
+
+		let chart = new Chart(context, {
+	    type: 'bar',
+		    data: {
+		        labels: ['Vingadores: Guerra Infinita', 'Vingadores: Ultimato', 'Thor'],
+		        datasets: [{
+		            label: 'Os melhores filmes de Ação',
+		            data: [12, 19, 12],
+		            backgroundColor: [
+		                'rgba(255, 99, 132, 0.2)',
+		                'rgba(54, 162, 235, 0.2)',
+		                'rgba(255, 206, 86, 0.2)'
+		            ],
+		            borderColor: [
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)'
+		            ],
+		            borderWidth: 0.5
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero: true
+		                }
+		            }]
+		        },
+		        maintainAspectRatio: false,
+		        responsive: false
+		    }
+		});
+
+	}
+
 }
+
+window.main = new Main();
