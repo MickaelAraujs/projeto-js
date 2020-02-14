@@ -12,5 +12,10 @@ module.exports = {
         const movie = await Movie.find(req.query);
 
         return res.json(movie)
+    },
+    async show(req,res) {
+        const movie = await Movie.findById(req.params.id);
+
+        return res.json(movie);
     }
 }

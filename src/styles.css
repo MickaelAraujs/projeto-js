@@ -1,8 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cambay:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Tenor+Sans&display=swap');
 
 body {
     background: #FFF;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Cambay', sans-serif;
+}
+
+h1 {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Tenor Sans', sans-serif;
 }
 
 .imgCard {

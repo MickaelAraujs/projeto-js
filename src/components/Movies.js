@@ -1,25 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import api from '../services/api';
-
+import { Link } from 'react-router-dom';
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, Button, Alert
+    Card, CardImg, CardText, CardBody,
+    CardTitle, Button, Alert
 } from 'reactstrap';
+
+import api from '../services/api';
+import Title from './Title';
 
 import '../styles.css';
 
-function Movies() {
+
+function Movies({ genre }) {
     const [ movies, setMovies ] = useState([]);
+    const [ titleName, setTitleName ] = useState('Filmes Disponíveis');
 
     useEffect(() => {
         async function loadMovies() {
             const response = await api.get('/movies');
 
-            setMovies(response.data);
+            if (!genre) {
+                setMovies(response.data);
+            } else {
+                const filter = response.data.filter(item => {
+                    return item.genre === genre;
+                });
+
+                setMovies(filter);
+                setTitleName('Filmes de ' + genre);
+            }
         }
 
         loadMovies();
-    },[]);
+    },[genre]);
 
     if (movies.length === 0) {
         return(
@@ -38,7 +51,7 @@ function Movies() {
                 <CardBody>
                     <CardTitle className='cardTitle'>{movie.title}</CardTitle>
                     <CardText>{movie.sinopse}</CardText>
-                    <Button className='btn btn-danger'>Mais Informações</Button>
+                    <Button tag={Link} to={`movies/info/${movie._id}`} className='btn btn-danger'>Mais Informações</Button>
                 </CardBody>
             </Card>
         );
@@ -46,7 +59,7 @@ function Movies() {
 
     return(
         <div className='container moviesContainer'>
-            <h1>Filmes Disponíveis</h1>
+            <Title title={titleName} />
             {
                 movies.map(movie => renderAllMovies(movie))
             }

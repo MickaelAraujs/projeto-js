@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [ isOpen, setIsOpen ] = useState(false);
@@ -18,18 +19,18 @@ function Header() {
   return (
     <header>
       <Navbar className="nav" color="danger" dark expand="md">
-        <NavbarBrand href="/">Meus Filmes</NavbarBrand>
+        <NavbarBrand tag={Link} to="/">Meus Filmes</NavbarBrand>
         <NavbarToggler onClick={toggle}/>
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
           <NavItem>
-              <NavLink href="/">inicio</NavLink>
+              <NavLink tag={Link} to="/">inicio</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Filmes de Ação</NavLink>
+              <NavLink tag={Link} to="/movies/acao">Filmes de Ação</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Filmes de Comédia</NavLink>
+              <NavLink tag={Link} to="/movies/comedia">Filmes de Comédia</NavLink>
             </NavItem>
           </Nav>
          </Collapse>
