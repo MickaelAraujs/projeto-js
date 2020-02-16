@@ -27,7 +27,7 @@ function Movies({ genre }) {
                 });
 
                 setMovies(filter);
-                setTitleName('Filmes de ' + genre);
+                setTitleName(`Filmes de ${genre}`);
             }
         }
 

@@ -10,6 +10,9 @@ import {
   NavLink
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import Pesquisa from '../components/pesquisa';
+
+//ADICIONAR onChange={props=>setPesquisa(props)} PARA CHAMAR A FUNÇÃO DE PESQUISAR FILME
 
 function Header() {
   const [ isOpen, setIsOpen ] = useState(false);
@@ -34,6 +37,8 @@ function Header() {
             </NavItem>
           </Nav>
          </Collapse>
+         <input type="text" placeholder="Pesquisar.." value='' 
+         ></input> 
       </Navbar>
     </header>
   );
