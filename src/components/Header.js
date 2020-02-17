@@ -37,8 +37,7 @@ function Header() {
             </NavItem>
           </Nav>
          </Collapse>
-         <input type="text" placeholder="Pesquisar.." value='' 
-         ></input> 
+         <Pesquisa/>
       </Navbar>
     </header>
   );
