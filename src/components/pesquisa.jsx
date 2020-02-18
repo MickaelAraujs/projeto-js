@@ -1,11 +1,11 @@
 import React, { Component, useState, useEffect, Fragment } from 'react';
 import chama from './busca';
 import lupa from './lupa.jpg'
+
+
 export default class Buscando extends Component{
     
-    
-
-    state = {
+        state = {
         busca:"Procurar "
     };
 
@@ -17,7 +17,7 @@ export default class Buscando extends Component{
         <Fragment>
         <input type="text" placeholder="Buscar..."
         value={this.busca} onchange={e=>this.setBusca(e)}/>  
-         <img src={lupa} alt="Lupa" width="40px" onClick={e=>chama(e)}/>
+         <img src={lupa} alt="Lupa" width="40px" onClick={e=>chama(e.value)}/>
         </Fragment>
     )};
 };

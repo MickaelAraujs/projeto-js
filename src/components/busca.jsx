@@ -11,13 +11,12 @@ import '../styles.css';
 //PESQUISAR COMO USAR API E FILTRAR OS FILMES, E IMPRIMIR CORRETAMENTE
 export default function  Filmes ({ e }){
         const [ pesquisa, setPesquisa ] = useState([]);
-        const [NomeFilme, SetNomeFilme] = useState([]);
         useEffect(()=> {
             async function BuscandoFilmes(){
             const response = await api.get('/movies');
             
             const filter = response.data.filter(busca => {
-                    return busca.e === e;
+                    return busca.e == e;
             });
 
             setPesquisa(filter);
