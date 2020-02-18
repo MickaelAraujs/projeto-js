@@ -18,12 +18,12 @@ function Header() {
 
   return (
     <header>
-      <Navbar className="nav" color="danger" dark expand="md">
+      <Navbar className="nav" color="dark" dark expand="md">
         <NavbarBrand tag={Link} to="/">Meus Filmes</NavbarBrand>
         <NavbarToggler onClick={toggle}/>
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-          <NavItem>
+            <NavItem>
               <NavLink tag={Link} to="/">inicio</NavLink>
             </NavItem>
             <NavItem>

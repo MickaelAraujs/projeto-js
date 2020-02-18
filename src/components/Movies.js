@@ -18,7 +18,7 @@ function Movies({ genre }) {
     useEffect(() => {
         async function loadMovies() {
             const response = await api.get('/movies');
-
+        
             if (!genre) {
                 setMovies(response.data);
             } else {
@@ -46,12 +46,12 @@ function Movies({ genre }) {
 
     const renderAllMovies = movie => {
         return(
-            <Card key={movie._id} className='card'>
+            <Card key={movie._id} style={{display:'flex', flexDirection: 'row'}}>
                 <CardImg top width="100%" className='imgCard' src={movie.poster_url} alt="movie poster" />
-                <CardBody>
+                <CardBody style={{marginTop:'30px'}}>
                     <CardTitle className='cardTitle'>{movie.title}</CardTitle>
                     <CardText>{movie.sinopse}</CardText>
-                    <Button tag={Link} to={`movies/info/${movie._id}`} className='btn btn-danger'>Mais Informações</Button>
+                    <Button tag={Link} to={`movies/info/${movie._id}`} className='btn btn-dark'>Mais Informações</Button>
                 </CardBody>
             </Card>
         );

@@ -32,7 +32,6 @@ function Info({ id }) {
                 <CardImg className='imgCard' width="100%" src={movieInfo.poster_url} alt="Movie Poster" />
                 <CardBody>
                     <CardText>{movieInfo.sinopse}</CardText>
-                    <a href={movieInfo.trailer_url}>Assistir Trailer</a>
                 </CardBody>
             </Card>
         </div>
