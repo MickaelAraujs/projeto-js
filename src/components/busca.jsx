@@ -6,11 +6,12 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, Button, Alert
 } from 'reactstrap';
+import '../styles.css';
 
 //PESQUISAR COMO USAR API E FILTRAR OS FILMES, E IMPRIMIR CORRETAMENTE
 export default function  Filmes ({ e }){
         const [ pesquisa, setPesquisa ] = useState([]);
-
+        const [NomeFilme, SetNomeFilme] = useState([]);
         useEffect(()=> {
             async function BuscandoFilmes(){
             const response = await api.get('/movies');
@@ -24,7 +25,17 @@ export default function  Filmes ({ e }){
         BuscandoFilmes();
         },[e]);
         
-        const resultadoPesquisa = movie => {
+        if (pesquisa.length === 0) {
+            return(
+                <div className='container'>
+                    <Alert className='alert' color="warning">
+                        Nenhum filme encontrado.
+                    </Alert>
+                </div>
+            );
+        }
+
+        const resultadoPesquisa = pesquisa => {
             return(
                 <Card key={pesquisa._id} className='card'>
                     <CardImg top width="100%" className='imgCard' src={pesquisa.poster_url} alt="movie poster" />
