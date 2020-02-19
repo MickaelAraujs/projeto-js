@@ -1,12 +1,16 @@
-class Main {
+export class Main {
 
 	constructor(){
 
-		this.elementsPrototype();
-		this.loadElements();
+		this.Chart = require('chart.js');
 
-		this.comedyMoviesChart();
-		this.actionMoviesChart();
+		this.elementsPrototype();
+		window.onload = ()=>{
+
+			this.loadElements();
+			this.createChart();
+
+		}
 
 	}
 
@@ -87,15 +91,25 @@ class Main {
 
 	comedyMoviesChart(){
 
-		let context = this.el.comedyCanvas.getContext('2d');
+		this.el.comediaCanvasBar.css({
+			width: '100%',
+			height: '100%'
+		});
 
-		let chart = new Chart(context, {
+		this.el.comediaCanvasLine.css({
+			width: '100%',
+			height: '100%'
+		});
+
+		let contextBar = this.el.comediaCanvasBar.getContext('2d');
+
+		let chartBar = new this.Chart(contextBar, {
 	    type: 'bar',
 		    data: {
-		        labels: ['As Branquelas', 'Inatividade Paranormal', 'Todo mundo em pânico'],
+		        labels: ['As Branquelas', 'Inatividade Paranormal', 'Ace Ventura: Um detetive diferente'],
 		        datasets: [{
 		            label: 'Os melhores filmes de comédia',
-		            data: [12, 19, 10],
+		            data: [16, 19, 10],
 		            backgroundColor: [
 		                'rgba(255, 99, 132, 0.2)',
 		                'rgba(54, 162, 235, 0.2)',
@@ -107,6 +121,46 @@ class Main {
 		                'rgba(255, 206, 86, 1)'
 		            ],
 		            borderWidth: 0.5
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero: true
+		                }
+		            }]
+		        },
+		        maintainAspectRatio: false,
+		        responsive: false
+		    }
+		});
+
+		//GRÁFICO DE LINHA
+
+		let contextLine = this.el.comediaCanvasLine.getContext('2d');
+
+		let chartLine = new this.Chart(contextLine, {
+	    type: 'line',
+		    data: {
+		        labels: ['As Branquelas', 'Inatividade Paranormal', 'Ace Ventura: Um detetive diferente'],
+		        datasets: [{
+		            label: 'Os melhores filmes de comédia',
+		            data: [16, 19, 10],
+		            backgroundColor: [
+		                'rgba(200, 10, 160, 0.2)',
+		                'rgba(54, 162, 235, 0.2)',
+		                'rgba(255, 206, 86, 0.2)'
+		            ],
+		            borderColor: [
+		                'rgba(200, 10, 160, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)'
+		            ],
+		            borderWidth: 0.5,
+		            fill: false,
+		            pointRadius: 8,
+		            lineTension: 0.5
 		        }]
 		    },
 		    options: {
@@ -126,15 +180,25 @@ class Main {
 
 	actionMoviesChart(){
 
-		let context = this.el.actionCanvas.getContext('2d');
+		this.el.acaoCanvasBar.css({
+			width: '100%',
+			height: '100%'
+		});
 
-		let chart = new Chart(context, {
+		this.el.acaoCanvasLine.css({
+			width: '100%',
+			height: '100%'
+		});
+
+		let contextBar = this.el.acaoCanvasBar.getContext('2d');
+
+		let chartBar = new this.Chart(contextBar, {
 	    type: 'bar',
 		    data: {
-		        labels: ['Vingadores: Guerra Infinita', 'Vingadores: Ultimato', 'Thor'],
+		        labels: ['Vingadores: Guerra Infinita', 'Vingadores: Ultimato', 'Capitã Marvel'],
 		        datasets: [{
 		            label: 'Os melhores filmes de Ação',
-		            data: [12, 19, 12],
+		            data: [36, 25, 13],
 		            backgroundColor: [
 		                'rgba(255, 99, 132, 0.2)',
 		                'rgba(54, 162, 235, 0.2)',
@@ -161,8 +225,85 @@ class Main {
 		    }
 		});
 
+		//GRÁFICO DE LINHA
+
+		let contextLine = this.el.acaoCanvasLine.getContext('2d');
+
+		let chartLine = new this.Chart(contextLine, {
+	    type: 'line',
+		    data: {
+		        labels: ['Vingadores: Guerra Infinita', 'Vingadores: Ultimato', 'Capitã Marvel'],
+		        datasets: [{
+		            label: 'Os melhores filmes de Ação',
+		            data: [36, 25, 13],
+		            backgroundColor: [
+		                'rgba(200, 10, 160, 0.2)',
+		                'rgba(54, 162, 235, 0.2)',
+		                'rgba(255, 206, 86, 0.2)'
+		            ],
+		            borderColor: [
+		                'rgba(200, 10, 160, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)'
+		            ],
+		            borderWidth: 0.5,
+		            fill: false,
+		            pointRadius: 8,
+		            lineTension: 0.5
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero: true
+		                }
+		            }]
+		        },
+		        maintainAspectRatio: false,
+		        responsive: false
+		    }
+		});
+
+	}
+
+	createChart(){
+
+		let div = document.createElement("div");
+		div.addClass('container');
+		div.css({
+			width: '800px',
+			height: '400px',
+			margin: '20px auto'
+		});
+
+		let url = (window.location.href).split("/");
+		let page = url[url.length - 1];
+
+		div.innerHTML = `
+			<canvas id='${page}-canvas-bar'></canvas>
+			<canvas id='${page}-canvas-line'></canvas>
+		`;
+
+		this.el.root.appendChild(div);
+		this.loadElements();
+		this.chooseCanvas(page);
+
+	}
+
+	chooseCanvas(page){
+
+		switch (page) {
+			case 'comedia':
+				this.comedyMoviesChart();
+				break;
+
+			case 'acao':
+				this.actionMoviesChart();
+				break;
+			
+		}
+
 	}
 
 }
-
-window.main = new Main();
