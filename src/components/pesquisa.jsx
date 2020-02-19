@@ -1,23 +1,23 @@
 import React, { Component, useState, useEffect, Fragment } from 'react';
-import chama from './busca';
+import Busca from './busca';
 import lupa from './lupa.jpg'
 
 
 export default class Buscando extends Component{
     
         state = {
-        busca:"Procurar "
+        procuraFilme:"Procurar "
     };
 
-    setBusca(e) {
-        this.setState({busca:e.target.value})
+    setProcuraFilme(e) {
+        this.setState({procuraFilme:e.target.value})
     }
     render(){
     return(
         <Fragment>
         <input type="text" placeholder="Buscar..."
-        value={this.busca} onchange={e=>this.setBusca(e)}/>  
-         <img src={lupa} alt="Lupa" width="40px" onClick={e=>chama(e.value)}/>
+        value={this.ProcuraFilme} onchange={e=>this.setProcuraFilme(e)}/>  
+         <img src={lupa} alt="Lupa" width="40px" onClick={e=>Busca(e.value)}/>
         </Fragment>
     )};
 };
