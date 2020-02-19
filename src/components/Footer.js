@@ -1,13 +1,35 @@
 import React from 'react';
-import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
+import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps';
 
 import '../styles.css';
 
+function buscarLocalizacao() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(mostrarPosicoes);
+    }
+}
+
+var Lat;
+var Lon;
+
+function mostrarPosicoes(posicao) {
+    Lat = posicao.coords.latitude; 
+    Lon = posicao.coords.longitude;
+}
+
+buscarLocalizacao();
+
+const LatLoja = -6.8896512;
+const LonLoja = -38.5454042;
+
 function Map() {
-    return (
-      <GoogleMap defaultZoom={15}
-      defaultCenter={{lat: -6.892003, lng: -38.559437}} />
-    );
+  return (
+    <GoogleMap defaultZoom={8}
+    defaultCenter={{lat: (Lat + LatLoja) / 2, lng: (Lon + LonLoja) / 2}}>
+      <Marker position={{lat: Lat, lng: Lon}} />
+      <Marker position={{lat: LatLoja, lng: LonLoja}}/>
+    </GoogleMap>
+  );
 }
 
 const WrappedMap = withScriptjs(withGoogleMap(Map));
