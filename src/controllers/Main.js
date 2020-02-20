@@ -272,9 +272,12 @@ export class Main {
 		let div = document.createElement("div");
 		div.addClass('container');
 		div.css({
-			width: '800px',
-			height: '400px',
-			margin: '20px auto'
+			width: '100vw',
+			height: '100%',
+			margin: '20px auto',
+			display: 'flex',
+			flexDirection: 'row',
+			flexWrap: 'wrap'
 		});
 
 		let url = (window.location.href).split("/");

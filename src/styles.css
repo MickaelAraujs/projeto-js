@@ -15,11 +15,15 @@ h1 {
 
 .imgCard {
     width: 250px;
+    margin: 0 auto;
 }
 
 .card {
     margin-top: 25px;
     padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .cardTitle {
@@ -36,4 +40,15 @@ h2 {
     font-size: 26px;
     margin-top: 30px;
     font-family: 'Tenor Sans', sans-serif;
+}
+.card-body {
+    width: 50vh;
+    margin: 0 auto;
+}
+iframe {
+    width: 35vmax;
+    height: 23vmax;
+}
+canvas {
+    margin: 0 auto;
 }

@@ -19,7 +19,7 @@ function Info({ id }) {
                         <h5>Gênero: <Badge color='warning'>{MoviesList[id].genre}</Badge></h5>
                     </CardSubtitle>
                     <CardText>{MoviesList[id].sinopse}</CardText>
-                    <iframe style={{marginLeft: '120px'}} width="560" height="315" title={MoviesList[id]} src={MoviesList[id].trailer_url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                    
+                    <iframe style={{marginLeft: '0px'}} width="560" height="315" title={MoviesList[id]} src={MoviesList[id].trailer_url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                    
                 </CardBody>
             </Card>
         </div>

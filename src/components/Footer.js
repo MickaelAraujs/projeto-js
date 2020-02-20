@@ -11,20 +11,42 @@ function buscarLocalizacao() {
 
 var Lat;
 var Lon;
+const LatLoja = -6.8896512;
+const LonLoja = -38.5454042;
+
+var zoom;
 
 function mostrarPosicoes(posicao) {
-    Lat = posicao.coords.latitude; 
+    Lat = posicao.coords.latitude;
     Lon = posicao.coords.longitude;
+    if (Number.parseInt(Lat) > Number.parseInt(LatLoja)){
+      zoom = Number.parseInt(Lat) - Number.parseInt(LatLoja);
+    }
+    else if (Number.parseInt(Lat) < Number.parseInt(LatLoja)){
+      zoom = Number.parseInt(LatLoja) - Number.parseInt(Lat);
+    }
+    else if (Number.parseInt(Lon) > Number.parseInt(LonLoja)){
+      zoom = Number.parseInt(Lon) - Number.parseInt(LonLoja);
+    }
+    else if (Number.parseInt(Lon) < Number.parseInt(LonLoja)){
+      zoom = Number.parseInt(LonLoja) - Number.parseInt(Lon);
+    }
+    else {
+      zoom = 0;
+    }
+    if (zoom === 0 || zoom === 1 || zoom === 2){
+      zoom = 9;
+    }
+    else {
+      zoom = zoom * 4 / 2;
+    }
 }
 
 buscarLocalizacao();
 
-const LatLoja = -6.8896512;
-const LonLoja = -38.5454042;
-
 function Map() {
   return (
-    <GoogleMap defaultZoom={8}
+    <GoogleMap defaultZoom={zoom}
     defaultCenter={{lat: (Lat + LatLoja) / 2, lng: (Lon + LonLoja) / 2}}>
       <Marker position={{lat: Lat, lng: Lon}} />
       <Marker position={{lat: LatLoja, lng: LonLoja}}/>
