@@ -273,7 +273,7 @@ export class Main {
 		div.addClass('container');
 		div.css({
 			width: '100vw',
-			height: '100%',
+			height: '400px',
 			margin: '20px auto',
 			display: 'flex',
 			flexDirection: 'row',
@@ -288,9 +288,13 @@ export class Main {
 			<canvas id='${page}-canvas-line'></canvas>
 		`;
 
-		this.el.root.appendChild(div);
-		this.loadElements();
-		this.chooseCanvas(page);
+		if (page) {
+
+			this.el.root.appendChild(div);
+			this.loadElements();
+			this.chooseCanvas(page);
+
+		}
 
 	}
 
