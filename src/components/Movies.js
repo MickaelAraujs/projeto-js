@@ -49,7 +49,7 @@ function Movies({ genre }) {
                 <CardBody style={{marginTop:'30px'}}>
                     <CardTitle className='cardTitle'>{movie.title}</CardTitle>
                     <CardText>{movie.sinopse}</CardText>
-                    <Button tag={Link} to={`movies/${movie._id}`} className='btn btn-dark'>Mais Informações</Button>
+                    <Button tag={Link} to={`/movies/${movie._id}`} className='btn btn-dark'>Mais Informações</Button>
                 </CardBody>
             </Card>
         );
