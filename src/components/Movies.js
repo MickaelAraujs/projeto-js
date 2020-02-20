@@ -12,19 +12,24 @@ import '../styles.css';
 
 function Movies({ genre }) {
     const [ movies, setMovies ] = useState([]);
-    const [ titleName, setTitleName ] = useState('Filmes Disponíveis');
+    const [ titleName, setTitleName ] = useState('');
 
     useEffect(() => {
-        const moviesList = MoviesList;
+        setTitleName('Filmes Disponíveis');
+
+        const renderMovies = () => {
+            const moviesList = MoviesList;
         
-        if (!genre) {
-                setMovies(moviesList);
-        } else {
-            const filter = moviesList.filter(item => item.genre === genre);
-            setMovies(filter);
-            setTitleName(`Filmes de ${genre}`);
+            if (!genre) {
+                    setMovies(moviesList);
+            } else {
+                const filter = moviesList.filter(item => item.genre === genre);
+                setMovies(filter);
+                setTitleName(`Filmes de ${genre}`);
+            }
         }
-        
+
+        renderMovies();
     },[genre]);
 
     if (movies.length === 0) {
@@ -49,9 +54,9 @@ function Movies({ genre }) {
             </Card>
         );
     }
-
+    
     return(
-        <div className='container moviesContainer'>
+        <div className='container'>
             <Title title={titleName} />
             {
                 movies.map(movie => renderAllMovies(movie))

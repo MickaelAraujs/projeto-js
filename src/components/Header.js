@@ -32,6 +32,9 @@ function Header() {
             <NavItem>
               <NavLink tag={Link} to="/movies/comedia">Filmes de Comédia</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/localizacao">Encontre-nos</NavLink>
+            </NavItem>
           </Nav>
          </Collapse>
       </Navbar>
