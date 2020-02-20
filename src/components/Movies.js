@@ -5,33 +5,26 @@ import {
     CardTitle, Button, Alert
 } from 'reactstrap';
 
-import api from '../services/api';
 import Title from './Title';
+import MoviesList from '../services/MoviesList';
 
 import '../styles.css';
-
 
 function Movies({ genre }) {
     const [ movies, setMovies ] = useState([]);
     const [ titleName, setTitleName ] = useState('Filmes Disponíveis');
 
     useEffect(() => {
-        async function loadMovies() {
-            const response = await api.get('/movies');
+        const moviesList = MoviesList;
         
-            if (!genre) {
-                setMovies(response.data);
-            } else {
-                const filter = response.data.filter(item => {
-                    return item.genre === genre;
-                });
-
-                setMovies(filter);
-                setTitleName('Filmes de ' + genre);
-            }
+        if (!genre) {
+                setMovies(moviesList);
+        } else {
+            const filter = moviesList.filter(item => item.genre === genre);
+            setMovies(filter);
+            setTitleName(`Filmes de ${genre}`);
         }
-
-        loadMovies();
+        
     },[genre]);
 
     if (movies.length === 0) {
@@ -51,7 +44,7 @@ function Movies({ genre }) {
                 <CardBody style={{marginTop:'30px'}}>
                     <CardTitle className='cardTitle'>{movie.title}</CardTitle>
                     <CardText>{movie.sinopse}</CardText>
-                    <Button tag={Link} to={`movies/info/${movie._id}`} className='btn btn-dark'>Mais Informações</Button>
+                    <Button tag={Link} to={`movies/${movie._id}`} className='btn btn-dark'>Mais Informações</Button>
                 </CardBody>
             </Card>
         );
